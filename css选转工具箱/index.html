@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet"
+            href="https://at.alicdn.com/t/c/font_4091675_7on0wvyx60v.css?spm=a313x.7781069.1998910419.52&file=font_4091675_7on0wvyx60v.css">
+    </head>
+    <body>
+        <!-- 菜单 -->
+        <div class="menu">
+            <!-- 一个按钮 -->
+            <div class="btn"><i class="iconfont icon-add"></i></div>
+            <!-- 八个图标 -->
+            <span style="--i: 0;"><i class="iconfont icon-a-rukudan3x"></i></span>
+            <span style="--i: 1;"><i class="iconfont icon-a-yuyueguanli3x"></i></span>
+            <span style="--i: 2;"><i class="iconfont icon-a-shangjiadan3x"></i></span>
+            <span style="--i: 3;"><i class="iconfont icon-a-tuijian3x"></i></span>
+            <span style="--i: 4;"><i class="iconfont icon-a-datuo3x"></i></span>
+            <span style="--i: 5;"><i class="iconfont icon-a-zhaoling3x"></i></span>
+            <span style="--i: 6;"><i class="iconfont icon-a-xunidan3x"></i></span>
+            <span style="--i: 7;"><i class="iconfont icon-a-wuliushisuan3x"></i></span>
+        </div>
+
+    </body>
+</html>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    /* 内容居中，设置渐变 */
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(45deg,deeppink,skyblue);
+    }
+    /* 最外层盒子设置底色 */
+    .menu{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        /* background: orange; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* 中间+号 */
+    .btn{
+        position: absolute;
+        z-index: 1000;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+    }
+    .btn i{
+        font-size: 32px;
+    }
+    /* 设置八个按钮的样式 */
+    .menu span{
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+         box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+         position: absolute;
+         left: 0;
+         /* 设置居中 */
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 50%;
+         cursor: pointer;
+         /* 设置hover效果 */
+         /* 设置旋转原点,盒子长宽是200px,那么中心位置就是100px */
+         transform-origin: 100px;
+         /* 旋转延迟 */
+         transition-delay: calc(.1s * var(--i));
+            /* 旋转时间 */
+         transition: .5s;
+        /* 设置初始居中显示 */
+         transform: rotate(0deg) translateX(80px);
+    }
+    /* hover的时候给图标添加旋转效果*/
+    .menu:hover span{
+        transform: rotate(calc(360deg /8 * var(--i)));
+    }
+    /* 设置八个图标自带负角度,保证转过来是图标是正的 */
+    .menu span i{
+        transform: rotate(calc(360deg /-8 * var(--i)));
+    }
+    .btn{
+        /* 这个东西是当鼠标放在上面的时候,呈现小手指 */
+        cursor: pointer;
+        transition: all 1.25s;
+    }
+    /* 中心按钮设置辅助选转效果*/
+    .menu:hover .btn{
+        transform: rotate(315deg);
+    }
+
+</style>
