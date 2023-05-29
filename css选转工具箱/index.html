@@ -26,6 +26,32 @@
 
     </body>
 </html>
+<script>
+    //新建一个映射关系map,value是你要执行的操作
+    let classmap = new Map([
+        ['icon-a-rukudan3x',()=>console.log("库单")],
+        ['icon-a-yuyueguanli3x',()=>console.log("预约管理")],
+        ['icon-a-shangjiadan3x',()=>console.log("上架单")],
+        ['icon-a-tuijian3x',()=>console.log("推荐")],
+        ['icon-a-datuo3x',()=>console.log("鞑托")],
+        ['icon-a-zhaoling3x',()=>console.log("诏令")],
+        ['icon-a-xunidan3x',()=>console.log("虚拟单")],
+        ['icon-a-wuliushisuan3x',()=>console.log("物流失算")]
+    ])
+
+
+    //通过事件委托的方式来实现点击事件
+    const parent  = document.querySelector('.menu')
+    parent.addEventListener('click',function(event){
+        for(let [key,value] of classmap){
+            if(event.target.classList.contains(key)){
+                value()
+            }
+        }
+    })
+
+
+</script>
 
 <style>
     *{
@@ -43,6 +69,7 @@
     }
     /* 最外层盒子设置底色 */
     .menu{
+        user-select: none;
         position: relative;
         width: 200px;
         height: 200px;
@@ -66,6 +93,7 @@
     }
     .btn i{
         font-size: 32px;
+        user-select: none;
     }
     /* 设置八个按钮的样式 */
     .menu span{
@@ -91,12 +119,22 @@
         /* 设置初始居中显示 */
          transform: rotate(0deg) translateX(80px);
     }
+    /* 设置八个按钮点击时候的样式 */
+    .menu span:hover{
+        user-select: none;
+        background-color: aqua;
+    }
+
     /* hover的时候给图标添加旋转效果*/
     .menu:hover span{
+        /* 这个主要是为了方式添加点击事件点击到了span区域,而没有点击到i区域 */
+        pointer-events: none;
         transform: rotate(calc(360deg /8 * var(--i)));
     }
     /* 设置八个图标自带负角度,保证转过来是图标是正的 */
     .menu span i{
+           /* 这个主要是为了方式添加点击事件点击到了span区域,而没有点击到i区域 */
+         pointer-events: auto;
         transform: rotate(calc(360deg /-8 * var(--i)));
     }
     .btn{
